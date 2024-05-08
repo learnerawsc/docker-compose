@@ -105,3 +105,9 @@ sudo add-apt-repository ppa:ondrej/php
 sudo apt update
 sudo apt install -y php8.1 php8.1-fpm php8.1-mysql php8.1-xml php8.1-mbstring php8.1-gd php8.1-curl php8.1-zip php8.1-imagick php8.1-redis php8.1-bcmath php8.1-exif php8.1-ctype php8.1-fileinfo php8.1-json php8.1-tokenizer php8.1-xml php8.1-openssl
 ```
+
+### Docker-Compose Configuration Part
+
+Please follow the link below to see the detailed guide. 
+
+https://khinenyeinaung.notion.site/Docker-Compose-ff719cc6a9384cb5a120d3816c99a614?pvs=4
