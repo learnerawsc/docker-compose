@@ -1,0 +1,47 @@
+version: '3'
+
+services:
+  kna_mysql:
+    image: mysql:latest
+    container_name: kna_mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: kna_laravel_db
+      MYSQL_USER: kna_laravel_user
+      MYSQL_PASSWORD: kna_laravel_password
+    volumes:
+      - kna_mysql_volume:/var/lib/mysql
+    networks:
+      - kna_network
+
+  kna_php:
+    build:
+      dockerfile: devops/docker/php.dockerfile
+    container_name: kna_php
+    volumes:
+      - ./:/var/www/html
+    depends_on:
+      - kna_mysql
+    networks:
+      - kna_network
+      
+  kna_nginx:
+    image: nginx:latest
+    container_name: kna_nginx
+    ports:
+      - "8080:80"
+    volumes:
+      - ./:/var/www/html
+      - ./devops/docker/nginx.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - kna_php
+    networks:
+      - kna_network
+
+networks:
+  kna_network:
+    driver: bridge
+
+volumes:
+  kna_mysql_volume:
+
